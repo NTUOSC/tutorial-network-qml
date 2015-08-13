@@ -1,20 +1,38 @@
 import QtQuick 2.3
 import QtQuick.Window 2.2
+import QtQuick.Controls 1.2
 
 Window {
     visible: true
-    width: 360
-    height: 360
+    visibility: Window.Maximized
 
-    MouseArea {
+    TabView {
+        id: tabs
         anchors.fill: parent
-        onClicked: {
-            Qt.quit();
-        }
-    }
+        anchors.margins: 12
 
-    Text {
-        text: qsTr("Hello World")
-        anchors.centerIn: parent
+        Tab {
+            id: firstTab
+            title: "新聞"
+
+            // 在這裡寫第一個 tab 的內容
+
+        } // firstTab
+
+        Tab {
+            id: secondTab
+            title: "氣象"
+
+            // 在這裡寫第二個 tab 的內容
+
+        } // secondTab
+
+        Tab {
+            id: thirdTab
+            title: "Playground"
+
+            // 在這裡寫第三個 tab 的內容
+
+        } // thirdTab
     }
 }
