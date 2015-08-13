@@ -37,6 +37,27 @@ Window {
 
             // 在這裡寫第二個 tab 的內容
 
+            Column {
+                spacing: 12
+
+                Text {
+                    font.pointSize: 24
+                    text: helper.天氣概況
+                }
+
+                Text {
+                  id: ipText
+                  font.pointSize: 72
+                  text: helper.溫度 + "°"
+                }
+
+                Text {
+                    font.pointSize: 36
+                    color: "#555"
+                    text: helper.最低溫 + " ~ " + helper.最高溫 + "°"
+                }
+            }
+
         } // secondTab
 
         Tab {
@@ -44,29 +65,30 @@ Window {
             title: "Playground"
 
             // 在這裡寫第三個 tab 的內容
-
-            Text {
-              id: ipText
-              font.pointSize: 72
-              text: helper.ip
-            }
-
         } // thirdTab
     }
 
     // 這是範例程式裏面幫助大家連網路的小工具
     HttpRequestHelper {
         id: helper
-        property string ip: "IP 掃描中 (=ﾟωﾟ)ﾉ"
+        property string 溫度: "??"
+        property string 天氣概況: ""
+        property int 最低溫: 0
+        property int 最高溫: 100
 
         onDone: {
-            helper.ip = data
+            var 氣象資料 = JSON.parse(data)
+            helper.溫度 = Math.round(氣象資料.main.temp - 273.15)
+            helper.最低溫 = Math.round(氣象資料.main.temp_min - 273.15)
+            helper.最高溫 = Math.round(氣象資料.main.temp_max - 273.15)
+            helper.天氣概況 = 氣象資料.weather[0].main
+
         }
     }
 
     Component.onCompleted: {
         // 在這裡寫啟動程式時要做的事情
-        helper.send("http://orange.tw")
+        helper.send("http://api.openweathermap.org/data/2.5/weather?q=Taipei")
 
     }
 }
