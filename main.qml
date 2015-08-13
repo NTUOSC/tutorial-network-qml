@@ -37,24 +37,27 @@ Window {
 
             // 在這裡寫第二個 tab 的內容
 
-            Column {
-                spacing: 12
+            Item {
+                Column {
+                    anchors.centerIn: parent
+                    spacing: 12
 
-                Text {
-                    font.pointSize: 24
-                    text: helper.天氣概況
-                }
+                    Text {
+                        font.pointSize: 24
+                        text: helper.天氣概況
+                    }
 
-                Text {
-                  id: ipText
-                  font.pointSize: 72
-                  text: helper.溫度 + "°"
-                }
+                    Text {
+                      id: ipText
+                      font.pointSize: 72
+                      text: helper.溫度 + "°"
+                    }
 
-                Text {
-                    font.pointSize: 36
-                    color: "#555"
-                    text: helper.最低溫 + " ~ " + helper.最高溫 + "°"
+                    Text {
+                        font.pointSize: 36
+                        color: "#555"
+                        text: helper.最低溫 + " ~ " + helper.最高溫 + "°"
+                    }
                 }
             }
 
