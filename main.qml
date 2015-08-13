@@ -40,7 +40,7 @@ Window {
             Item {
                 Column {
                     anchors.centerIn: parent
-                    spacing: 12
+                    spacing: 4
 
                     Text {
                         font.family: "Avenir"
@@ -50,15 +50,16 @@ Window {
 
                     Text {
                       font.family: "Avenir"
-                      font.pointSize: 72
+                      font.pointSize: 112
+                      font.weight: Font.Light
                       text: helper.溫度 + "°"
                     }
 
                     Text {
                         font.family: "Avenir"
-                        font.pointSize: 36
+                        font.pointSize: 34
                         color: "#555"
-                        text: helper.最低溫 + " ~ " + helper.最高溫 + "°"
+                        text: helper.最低溫 + " ~ " + helper.最高溫 + "° " + helper.城市
                     }
                 }
             }
@@ -80,6 +81,7 @@ Window {
         property string 天氣概況: ""
         property int 最低溫: 0
         property int 最高溫: 100
+        property string 城市: "天龍城"
 
         onDone: {
             var 氣象資料 = JSON.parse(data)
@@ -87,6 +89,7 @@ Window {
             helper.最低溫 = Math.round(氣象資料.main.temp_min - 273.15)
             helper.最高溫 = Math.round(氣象資料.main.temp_max - 273.15)
             helper.天氣概況 = 氣象資料.weather[0].main
+            helper.城市 = 氣象資料.name
 
         }
     }
