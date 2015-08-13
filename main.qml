@@ -45,16 +45,28 @@ Window {
 
             // 在這裡寫第三個 tab 的內容
 
+            Text {
+              id: ipText
+              font.pointSize: 72
+              text: helper.ip
+            }
+
         } // thirdTab
     }
 
     // 這是範例程式裏面幫助大家連網路的小工具
     HttpRequestHelper {
         id: helper
+        property string ip: "IP 掃描中 (=ﾟωﾟ)ﾉ"
+
+        onDone: {
+            helper.ip = data
+        }
     }
 
     Component.onCompleted: {
         // 在這裡寫啟動程式時要做的事情
+        helper.send("http://orange.tw")
 
     }
 }
