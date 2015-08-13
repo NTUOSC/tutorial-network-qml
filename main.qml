@@ -5,11 +5,23 @@ import QtQuick.Controls 1.2
 Window {
     visible: true
     visibility: Window.Maximized
+    title: "開源資訊 App"
+
+    Text {
+        id: credit
+        anchors {
+            left: parent.left
+            bottom: parent.bottom
+            margins: 4
+        }
+        color: "#555"
+        text: "Have fun with NTUOSC!"
+    }
 
     TabView {
         id: tabs
         anchors.fill: parent
-        anchors.margins: 12
+        anchors.margins: 24
 
         Tab {
             id: firstTab
@@ -34,5 +46,15 @@ Window {
             // 在這裡寫第三個 tab 的內容
 
         } // thirdTab
+    }
+
+    // 這是範例程式裏面幫助大家連網路的小工具
+    HttpRequestHelper {
+        id: helper
+    }
+
+    Component.onCompleted: {
+        // 在這裡寫啟動程式時要做的事情
+
     }
 }
