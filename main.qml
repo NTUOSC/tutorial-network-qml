@@ -4,13 +4,14 @@ import QtQuick.Controls 1.2
 
 Window {
     visible: true
-    visibility: Window.Maximized
+    width: 360
+    height: 360
     title: "開源資訊 App"
 
     Text {
         id: credit
         anchors {
-            left: parent.left
+            left: tabs.left
             bottom: parent.bottom
             margins: 4
         }
@@ -22,6 +23,7 @@ Window {
         id: tabs
         anchors.fill: parent
         anchors.margins: 24
+        currentIndex: 1
 
         Tab {
             id: firstTab
@@ -59,7 +61,7 @@ Window {
                         font.family: "Avenir"
                         font.pointSize: 34
                         color: "#555"
-                        text: helper.最低溫 + " ~ " + helper.最高溫 + "° " + helper.城市
+                        text: helper.城市 + " " + helper.最低溫 + " ~ " + helper.最高溫 + "°"
                     }
                 }
             }
